@@ -1,1 +1,9 @@
-{{ top_submissions }}
+{% if top_submissions %}
+    <ul>
+        {% for submission in top_submissions %}
+            <li>{{ submission.word }}<strong>{{ submission.vote_set.count }}</strong></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Be the first to add your word!</p>
+{% endif %}
