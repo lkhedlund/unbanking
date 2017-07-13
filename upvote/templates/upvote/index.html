@@ -1,9 +1,18 @@
+<p>
+    <form method="post" action="{% url 'upvotes:index' %}">
+        {% csrf_token %}
+        {{ submission_form }}
+        <input type="submit" value="Submit" />
+    </form>
+</p>
+<p>
 {% if top_submissions %}
     <ul>
         {% for submission in top_submissions %}
-            <li>{{ submission.word }}<strong>{{ submission.vote_set.count }}</strong></li>
+            <li>{{ submission.word }}<strong>{{ submission.vote_set.count }}</strong> <a href="">Share</a></li>
         {% endfor %}
     </ul>
 {% else %}
     <p>Be the first to add your word!</p>
 {% endif %}
+</p>

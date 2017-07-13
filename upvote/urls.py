@@ -5,4 +5,5 @@ from . import views
 app_name = 'upvotes'
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^thanks/', views.thanks, name='thanks'),
 ]
