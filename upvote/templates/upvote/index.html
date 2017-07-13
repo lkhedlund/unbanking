@@ -9,7 +9,15 @@
 {% if top_submissions %}
     <ul>
         {% for submission in top_submissions %}
-            <li>{{ submission.word }}<strong>{{ submission.vote_set.count }}</strong> <a href="">Share</a></li>
+            <li>
+                <a href="{% url 'upvote:detail' submission.word %}"> {{ submission.word }}</a>
+                <form action="{% url 'upvote:vote' submission.word %}" method="post">
+                    {% csrf_token %}
+                    <a href="">{{ submission.vote_set.count }}</strong>
+                    <input type="hidden" value="{{ submission.word }}" />
+                    <button type="submit">Vote</button>
+                </form>
+                <a href="">Share</a></li>
         {% endfor %}
     </ul>
 {% else %}

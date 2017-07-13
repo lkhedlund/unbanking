@@ -47,5 +47,8 @@ class DetailView(generic.View):
             'submission': submission,
         })
 
-def thanks(request):
-    return render(request, 'upvote/thanks.html')
+def vote(request, word):
+    submission = get_object_or_404(Submission, word=word)
+    vote = Vote(submission=submission)
+    vote.save()
+    return redirect('upvote:index')
