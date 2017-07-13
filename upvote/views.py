@@ -4,6 +4,7 @@ from django.db.models import Count
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Submission, Vote
 from .forms import SubmissionForm
@@ -15,10 +16,19 @@ class IndexView(generic.View):
         submission_form = SubmissionForm()
         submissions = Submission.objects \
             .annotate(votes=Count('vote')) \
-            .order_by('-votes')[:20]
+            .order_by('-votes')
+        page = request.GET.get('page', 1)
+        paginator = Paginator(submissions, 3)
+        try:
+            top_submissions = paginator.page(page)
+        except PageNotAnInteger:
+            top_submissions = paginator.page(1)
+        except EmptyPage:
+            top_submissions = paginator.page(paginator.num_pages)
+
         return render(request, self.template_name, {
             'submission_form': submission_form,
-            'top_submissions': submissions,
+            'top_submissions': top_submissions,
             })
 
     def post(self, request):
