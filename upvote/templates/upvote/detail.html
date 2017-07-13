@@ -6,4 +6,8 @@
     </ul>
 {% endif %}
 
-<h1>{{ submission.word }} {{ submission.vote_set.count }}</h1>
+<h1>{{ submission.word }}
+    {% if submission.vote_set > 0 %}
+        {{ submission.vote_set.count }}
+    {% endif %}
+</h1>
