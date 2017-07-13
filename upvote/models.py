@@ -14,4 +14,7 @@ class Submission(models.Model):
 
 class Vote(models.Model):
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
-    ip = models.CharField(max_length=300, null=True)
+    submission_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return "Voted on {date}".format(date=submission_date)

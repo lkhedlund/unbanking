@@ -23,6 +23,13 @@ class IndexView(generic.View):
 
     def post(self, request):
         form = SubmissionForm(request.POST)
+        submitted_word = form.data['word'].lower()
+        if Submission.objects.filter(word=submitted_word).exists():
+            submission = Submission.objects.filter(word=submitted_word).get()
+            vote = Vote(submission=submission)
+            vote.save()
+            messages.add_message(request, messages.INFO, "Already exists!")
+            return HttpResponseRedirect(reverse('upvote:detail', args=(submission.word,)))
         if form.is_valid():
             submission = form.save(commit=False)
             submission.save()
