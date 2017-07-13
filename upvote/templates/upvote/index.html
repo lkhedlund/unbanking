@@ -10,9 +10,9 @@
     </p>
     <p>
     {% if top_submissions %}
-        <ul>
+        <div class="infinite-container">
             {% for submission in top_submissions %}
-                <li>
+                <div class="infinite-item">
                     <a href="{% url 'upvote:detail' submission.word %}"> {{ submission.word }}</a>
                     <form action="{% url 'upvote:vote' submission.word %}" method="post">
                         {% csrf_token %}
@@ -21,31 +21,19 @@
                         <button type="submit">Vote</button>
                     </form>
                     <a href="">Share</a></li>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
+        {% if top_submissions.has_next %}
+            <a class="infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
+        {% endif %}
     {% else %}
         <p>Be the first to add your word!</p>
     {% endif %}
     </p>
-    {% if top_submissions.has_other_pages %}
-        <ul class="pagination">
-            {% if top_submissions.has_previous %}
-            <li><a href="?page={{ top_submissions.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-            <li class="disabled"><span>&laquo;</span></li>
-            {% endif %}
-            {% for i in top_submissions.paginator.page_range %}
-            {% if top_submissions.number == i %}
-                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-            {% else %}
-                <li><a href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %}
-            {% endfor %}
-            {% if top_submissions.has_next %}
-            <li><a href="?page={{ top_submissions.next_page_number }}">&raquo;</a></li>
-            {% else %}
-            <li class="disabled"><span>&raquo;</span></li>
-            {% endif %}
-        </ul>
-    {% endif %}
+    <script>
+        var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0]
+        });
+    </script>
 {% endblock %}
