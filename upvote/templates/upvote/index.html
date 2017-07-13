@@ -24,6 +24,11 @@
                 </div>
             {% endfor %}
         </div>
+
+        <div class="loading" style="display: none;">
+            Loading...
+        </div>
+
         {% if top_submissions.has_next %}
             <a class="infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
         {% endif %}
@@ -33,7 +38,13 @@
     </p>
     <script>
         var infinite = new Waypoint.Infinite({
-        element: $('.infinite-container')[0]
+            element: $('.infinite-container')[0],
+            onBeforePageLoad: function () {
+                $('.loading').show();
+            },
+            onAfterPageLoad: function ($items) {
+                $('.loading').hide();
+            }
         });
     </script>
 {% endblock %}

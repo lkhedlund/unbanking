@@ -11,6 +11,7 @@ from .forms import SubmissionForm
 
 class IndexView(generic.View):
     template_name = 'upvote/index.html'
+    paginate_by = 10
 
     def get(self, request):
         submission_form = SubmissionForm()
@@ -18,7 +19,7 @@ class IndexView(generic.View):
             .annotate(votes=Count('vote')) \
             .order_by('-votes')
         page = request.GET.get('page', 1)
-        paginator = Paginator(submissions, 3)
+        paginator = Paginator(submissions, self.paginate_by)
         try:
             top_submissions = paginator.page(page)
         except PageNotAnInteger:
