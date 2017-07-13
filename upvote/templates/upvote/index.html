@@ -1,47 +1,51 @@
-<p>
-    <form method="post" action="{% url 'upvote:index' %}">
-        {% csrf_token %}
-        {{ submission_form }}
-        <input type="submit" value="Submit" />
-    </form>
-</p>
-<p>
-{% if top_submissions %}
-    <ul>
-        {% for submission in top_submissions %}
-            <li>
-                <a href="{% url 'upvote:detail' submission.word %}"> {{ submission.word }}</a>
-                <form action="{% url 'upvote:vote' submission.word %}" method="post">
-                    {% csrf_token %}
-                    <a href="">{{ submission.vote_set.count }}</strong>
-                    <input type="hidden" value="{{ submission.word }}" />
-                    <button type="submit">Vote</button>
-                </form>
-                <a href="">Share</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Be the first to add your word!</p>
-{% endif %}
-</p>
-{% if top_submissions.has_other_pages %}
-  <ul class="pagination">
-    {% if top_submissions.has_previous %}
-      <li><a href="?page={{ top_submissions.previous_page_number }}">&laquo;</a></li>
+{% extends 'upvote/layout/base.html' %}
+
+{% block content %}
+    <p>
+        <form method="post" action="{% url 'upvote:index' %}">
+            {% csrf_token %}
+            {{ submission_form }}
+            <input type="submit" value="Submit" />
+        </form>
+    </p>
+    <p>
+    {% if top_submissions %}
+        <ul>
+            {% for submission in top_submissions %}
+                <li>
+                    <a href="{% url 'upvote:detail' submission.word %}"> {{ submission.word }}</a>
+                    <form action="{% url 'upvote:vote' submission.word %}" method="post">
+                        {% csrf_token %}
+                        <a href="">{{ submission.vote_set.count }}</strong>
+                        <input type="hidden" value="{{ submission.word }}" />
+                        <button type="submit">Vote</button>
+                    </form>
+                    <a href="">Share</a></li>
+            {% endfor %}
+        </ul>
     {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
+        <p>Be the first to add your word!</p>
     {% endif %}
-    {% for i in top_submissions.paginator.page_range %}
-      {% if top_submissions.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if top_submissions.has_next %}
-      <li><a href="?page={{ top_submissions.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
+    </p>
+    {% if top_submissions.has_other_pages %}
+        <ul class="pagination">
+            {% if top_submissions.has_previous %}
+            <li><a href="?page={{ top_submissions.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in top_submissions.paginator.page_range %}
+            {% if top_submissions.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if top_submissions.has_next %}
+            <li><a href="?page={{ top_submissions.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
     {% endif %}
-  </ul>
-{% endif %}
+{% endblock %}

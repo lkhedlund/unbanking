@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Unbanking.ca</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'upvote/css/main.css' %}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'upvote/js/jquery.waypoints.min.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

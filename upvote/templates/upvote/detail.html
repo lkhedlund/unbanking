@@ -1,13 +1,17 @@
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+{% extends 'upvote/layout/base.html' %}
 
-<h1>{{ submission.word }}
-    {% if submission.vote_set > 0 %}
-        {{ submission.vote_set.count }}
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
-</h1>
+
+    <h1>{{ submission.word }}
+        {% if submission.vote_set > 0 %}
+            {{ submission.vote_set.count }}
+        {% endif %}
+    </h1>
+{% endblock %}
