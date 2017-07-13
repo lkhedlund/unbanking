@@ -1,5 +1,5 @@
 <p>
-    <form method="post" action="{% url 'upvotes:index' %}">
+    <form method="post" action="{% url 'upvote:index' %}">
         {% csrf_token %}
         {{ submission_form }}
         <input type="submit" value="Submit" />
