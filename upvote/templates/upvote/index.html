@@ -6,76 +6,71 @@
   <section class="container-fluid bg-white">
     <div class="container">
       <div class="row pt-5 pb-5">
-        <div class="col-2"></div>
-        <div class="col-8">
-          <div class="row pb-4">
-            <span class="d-block mx-auto">
-              <h1 id="subtext">SINCE WE'LL HAVE TO CHANGE OUR TERMINOLOGY, LET'S MAKE SOME SUGGESTIONS.</h1>
-            </span>
-          </div>
-          <div class="container">
-            <div class="row pb-5">
-              <form method="post" action="{% url 'upvote:index' %}" class="form-group">
-                {% csrf_token %}
-                  <div class="col-sm-8">
-                    {{ submission_form }}
-                  </div>
-                  <div class="col-sm-2">
-                    <button type="submit" id="search-btn" class="btn">
-                      SUBMIT A REPLACEMENT FOR THE WORD "BANKING"
-                      <!-- <img class="col-md-1 pt-1" src="public/...">
-                            -->
-                    </button>
-                  </div>
-                </form>
+        <div class="col-12 col-md-8 offset-md-2">
+          <span class="d-block mx-auto">
+            <h1 id="subtext">SINCE WE'LL HAVE TO CHANGE OUR TERMINOLOGY, LET'S MAKE SOME SUGGESTIONS.</h1>
+          </span>
+          <div class="row pb-5">
+            <form method="post" action="{% url 'upvote:index' %}" class="form-group">
+              {% csrf_token %}
+                <div class="col-sm-8">
+                  {{ submission_form }}
+                </div>
+                <div class="col-sm-2">
+                  <button type="submit" id="search-btn" class="btn">
+                    SUBMIT A REPLACEMENT FOR THE WORD "BANKING"
+                    <!-- <img class="col-md-1 pt-1" src="public/...">
+                          -->
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!--<div class="row">
+              <div class="col">
+                <a href="#most-popular" class="filter-titles">MOST POPULAR</a>
               </div>
-              <div class="row">
-                <div class="col">
-                  <a href="#most-popular" class="filter-titles">MOST POPULAR</a>
-                </div>
-                <div class="col">
-                  <a href="#most-recent" class="filter-titles">MOST RECENT</a>
-                </div>
-                <div class="col">
-                  <a href="#random" class="filter-titles">RANDOM</a>
-                </div>
+              <div class="col">
+                <a href="#most-recent" class="filter-titles">MOST RECENT</a>
               </div>
-              <div class="container infinite-container">
-                {% if top_submissions %}
-                  <div class="row">
-                    {% for submission in top_submissions %}
-                      <div class="container bg-purple infinite-item">
-                        <div class="row pt-2 pb-2">
-                          <div class="col-md-8 pt-2 pl-4">
-                            <a href="{% url 'upvote:detail' submission.word %}">
-                              <h1 id="user-submission">{{ submission.word }}</h1>
-                            </a>
-                          </div>
-                          <div class="col-md-2 logo-base pt-2 pb-2">
-                            <form id="vote" action="{% url 'upvote:vote' submission.word %}" method="post">
-                              {% csrf_token %}
-                              <a href="#" onclick="document.forms['vote'].submit();">
-                                <img src="{% static 'upvote/images/unbanking_icon_heart.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
-                              </a>
-                            </form>
-                            <h3 class="entry-subtext">{{ submission.vote_set.count }}</h3>
-                          </div>
-                          <div class="col-md-2 logo-base pt-2 pb-2">
-                            <img src="{% static 'upvote/images/unbanking_icon_share.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
-                            <div class="d-block mx-auto">
-                              <h3 class="entry-subtext">SHARE</h3>
-                            </div>
-                          </div>
+              <div class="col">
+                <a href="#random" class="filter-titles">RANDOM</a>
+              </div>
+            </div>-->
+            {% if top_submissions %}
+              <div class="row infinite-container">
+                <div class="col-12">
+                  {% for submission in top_submissions %}
+                    <div class="row bg-purple infinite-item align-items-center justify-content-between p-4 mb-2">
+                      <div class="col-8">
+                        <a href="{% url 'upvote:detail' submission.word %}">
+                          <h1 id="user-submission">{{ submission.word }}</h1>
+                        </a>
+                      </div>
+                      <div class="col-2 logo-base">
+                        <form id="vote" action="{% url 'upvote:vote' submission.word %}" method="post">
+                          {% csrf_token %}
+                          <a href="#" onclick="document.forms['vote'].submit();">
+                            <img src="{% static 'upvote/images/unbanking_icon_heart.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
+                          </a>
+                        </form>
+                        <h3 class="entry-subtext">{{ submission.vote_set.count }}</h3>
+                      </div>
+                      <div class="col-2 logo-base">
+                        <img src="{% static 'upvote/images/unbanking_icon_share.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
+                        <div class="d-block mx-auto">
+                          <h3 class="entry-subtext">SHARE</h3>
                         </div>
                       </div>
-                      {% endfor %}
-                      <div class="container bg-purple loading" style="display: none;">
-                        <div class="row pt-2 pb-2">
-                          <div class="col-md-8 pt-2 pl-4">
-                            <h1>Loading...</h1>
-                          </div>
-                        </div>
-                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="row bg-purple loading" style="display: none;">
+                <div class="col-12 pt-2 pl-4">
+                  <h1>Loading...</h1>
+                </div>
+              </div>
+            </div>
                       {% if top_submissions.has_next %}
                           <div class="row pt-5 pb-5">
                             <div class="d-block mx-auto">
