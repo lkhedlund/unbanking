@@ -163,3 +163,7 @@ label {
   text-align: center;
   width: 100%;
 }
+
+.alert {
+  margin-bottom: 0;
+}
