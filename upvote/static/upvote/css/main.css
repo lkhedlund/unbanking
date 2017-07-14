@@ -164,6 +164,10 @@ label {
   width: 100%;
 }
 
+.vote-btn:focus {
+  outline: none;
+}
+
 .alert {
   margin-bottom: 0;
 }
