@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Submission, Vote
 from .forms import SubmissionForm
-from .utils import has_voted
+from .utils import has_voted, format_word
 
 class IndexView(generic.View):
     template_name = 'upvote/index.html'
@@ -40,7 +40,7 @@ class IndexView(generic.View):
     def post(self, request):
         form = SubmissionForm(request.POST)
         # Check whether the user has already submitted a word or voted
-        submitted_word = form.data['word'].lower()
+        submitted_word = format_word(form.data['word'])
         if Submission.objects.filter(word=submitted_word).exists():
             submission = Submission.objects.filter(word=submitted_word).get()
             if has_voted(request):

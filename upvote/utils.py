@@ -8,3 +8,10 @@ def has_voted(request):
         return True
     else:
         return False
+
+def format_word(word):
+    lower_word = word.lower()
+    if lower_word[-3:] == 'ing':
+        return lower_word[:-3]
+    else:
+        return lower_word

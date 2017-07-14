@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 from upvote.data.profanity import profanity_set
+from .utils import format_word
 
 class Submission(models.Model):
     word = models.CharField(max_length=50, unique=True)
@@ -13,7 +14,7 @@ class Submission(models.Model):
         return self.word
 
     def save(self, *args, **kwargs):
-        self.word = self.word.lower()
+        self.word = format_word(self.word)
         super(Submission, self).save(*args, **kwargs)
 
     def clean(self):
