@@ -171,3 +171,24 @@ label {
 .alert {
   margin-bottom: 0;
 }
+
+.dropdown-menu {
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
+
+.dropdown-menu:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.dropdown-item {
+  text-align: center;
+}
