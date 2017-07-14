@@ -8,10 +8,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Submission, Vote
 from .forms import SubmissionForm
+from .utils import has_participated
 
 class IndexView(generic.View):
     template_name = 'upvote/index.html'
     paginate_by = 10
+
+    duplicate_message = "Great minds think alike! Your word has already been chosen, so we've aded a vote. Don't tell anyone else, but we hope you win."
+    thanks_message = "Thank you for your submission! Now get out there and vote!"
 
     def get(self, request):
         submission_form = SubmissionForm()
@@ -34,17 +38,22 @@ class IndexView(generic.View):
 
     def post(self, request):
         form = SubmissionForm(request.POST)
+        # Check whether the user has already submitted a word or voted
+        if has_participated(request):
+            return redirect('upvote:index')
         submitted_word = form.data['word'].lower()
         if Submission.objects.filter(word=submitted_word).exists():
             submission = Submission.objects.filter(word=submitted_word).get()
             vote = Vote(submission=submission)
             vote.save()
-            messages.add_message(request, messages.INFO, "Already exists!")
+            messages.add_message(request, messages.INFO, self.duplicate_message)
+            request.session['has_voted'] = True
             return HttpResponseRedirect(reverse('upvote:detail', args=(submission.word,)))
         if form.is_valid():
             submission = form.save(commit=False)
             submission.save()
-            messages.add_message(request, messages.INFO, "Thank you for your submission!")
+            request.session['has_submitted'] = True
+            messages.add_message(request, messages.INFO, self.thanks_message)
             return HttpResponseRedirect(reverse('upvote:detail', args=(submission.word,)))
         return redirect('upvote:index')
 
@@ -59,7 +68,12 @@ class DetailView(generic.View):
         })
 
 def vote(request, word):
+    voted_message = "Thank you for voting. Be sure to share your word get get the most votes to win!"
+    if request.session.get('has_voted', False):
+        messages.add_message(request, messages.ERROR, voted_message)
+        return redirect('upvote:index')
     submission = get_object_or_404(Submission, word=word)
     vote = Vote(submission=submission)
     vote.save()
+    request.session['has_voted'] = True
     return redirect('upvote:index')
