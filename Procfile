@@ -1,0 +1,1 @@
+web: gunicorn unbanking.wsgi --log-file -
