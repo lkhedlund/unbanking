@@ -1,0 +1,155 @@
+.bg-purple {
+  background-color: #472e8a;
+}
+
+.circle-icon {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: #4caf76;
+}
+
+.circle-left {
+  @extend .circle-icon;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.circle-right {
+  @extend .circle-icon;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+#carousel-text {
+  font-family: 'Roboto', sans-serif;
+  color: #e6e6e6;
+  text-align: center;
+  font-size: 26px;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.float-left {
+  float: left;
+}
+
+#subtext {
+  font-family: 'Roboto', sans-serif;
+  color: #4d4d4d;
+  font-size: 26px;
+  text-align: center;
+  font-weight: lighter;
+}
+
+#user-submission {
+  font-family: 'Roboto', sans-serif;
+  font-size: 40px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+
+.user-name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  color: #fff;
+}
+
+@media screen and (max-width: 375px) and (min-width: 320px) {
+  #user-submission {
+    font-size: 15px;
+  }
+
+  #user-name {
+    font-size: 10px;
+  }
+}
+
+.entry-subtext {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 100;
+  color: #fff;
+  text-align: center;
+}
+
+#form-styling {
+  color: purple;
+}
+
+#search-btn {
+  padding-top, padding-bottom: 2% 0;
+  font-size: 12px;
+  background-color: #4caf76 !important;
+  color: white;
+  border-color: #4caf76 !important;
+}
+
+.no-decoration {
+  text-decoration: none;
+}
+
+.filter-titles {
+  font-size: 13px;
+  float: left;
+}
+
+.bg-grey {
+  background-color: #e6e6e6
+}
+
+.bg-red {
+  background-color: tomato;
+}
+.logo-content {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+  vertical-align:middle;
+  width:200px;
+}
+
+.wrapper {
+  overflow: hidden;
+}
+
+#content {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  top: 90px;
+  height: auto;
+  max-width: auto;
+  overflow-y: hidden;
+  overflow-x:auto;
+  word-wrap:normal;
+  white-space:nowrap;
+}
+
+.resizing-img {
+  max-width: 100px;
+}
+
+
+.logo {
+  width: 100%;
+  max-width: 50px;
+  height: auto;
+}
+
+.logo-base {
+  width: 60px;
+  height: auto;
+}
+
+.logo-base-bottom {
+  width: 400px;
+  height: auto;
+}
