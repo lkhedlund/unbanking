@@ -1,3 +1,7 @@
+label {
+  display: none;
+}
+
 .bg-purple {
   background-color: #472e8a;
 }
@@ -84,7 +88,7 @@
 }
 
 #search-btn {
-  padding-top, padding-bottom: 2% 0;
+  padding: 2% 0;
   font-size: 12px;
   background-color: #4caf76 !important;
   color: white;
@@ -152,4 +156,12 @@
 .logo-base-bottom {
   width: 400px;
   height: auto;
+}
+
+.vote-btn {
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  text-align: center;
+  width: 100%;
 }

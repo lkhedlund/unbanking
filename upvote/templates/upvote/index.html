@@ -10,21 +10,17 @@
           <span class="d-block mx-auto">
             <h1 id="subtext">SINCE WE'LL HAVE TO CHANGE OUR TERMINOLOGY, LET'S MAKE SOME SUGGESTIONS.</h1>
           </span>
-          <div class="row pb-5">
-            <form method="post" action="{% url 'upvote:index' %}" class="form-group">
-              {% csrf_token %}
-                <div class="col-sm-8">
-                  {{ submission_form }}
-                </div>
-                <div class="col-sm-2">
-                  <button type="submit" id="search-btn" class="btn">
-                    SUBMIT A REPLACEMENT FOR THE WORD "BANKING"
-                    <!-- <img class="col-md-1 pt-1" src="public/...">
-                          -->
-                  </button>
-                </div>
-              </form>
-            </div>
+          <form method="post" action="{% url 'upvote:index' %}" class="form-group row my-4">
+            {% csrf_token %}
+              <div class="col-12 col-sm-8">
+                {{ submission_form }}
+              </div>
+              <button type="submit" id="search-btn" class="btn col-12 col-sm-2">
+                SUBMIT A REPLACEMENT FOR THE WORD "BANKING"
+                <!-- <img class="col-md-1 pt-1" src="public/...">
+                      -->
+              </button>
+            </form>
             <!--<div class="row">
               <div class="col">
                 <a href="#most-popular" class="filter-titles">MOST POPULAR</a>
@@ -49,9 +45,9 @@
                       <div class="col-2 logo-base">
                         <form id="vote" action="{% url 'upvote:vote' submission.word %}" method="post">
                           {% csrf_token %}
-                          <a href="#" onclick="document.forms['vote'].submit();">
+                          <button type="submit" class="vote-btn">
                             <img src="{% static 'upvote/images/unbanking_icon_heart.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
-                          </a>
+                          </button>
                         </form>
                         <h3 class="entry-subtext">{{ submission.vote_set.count }}</h3>
                       </div>
@@ -70,37 +66,33 @@
                   <h1>Loading...</h1>
                 </div>
               </div>
-            </div>
-                      {% if top_submissions.has_next %}
-                          <div class="row pt-5 pb-5">
-                            <div class="d-block mx-auto">
-                              <a class="btn btn-lg" class="infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
-                            </div>
-                          </div>
-                      {% endif %}
-                    </div>
-                    {% else %}
-                    <div class="row">
-                      <div class="col-12">
-                        <p>Be the first to add your word!</p>
-                      </div>
-                    </div>
-                  {% endif %}
+              {% if top_submissions.has_next %}
+                <div class="col-12 pt-5 pb-5">
+                  <div class="d-block mx-auto">
+                    <a class="btn btn-lg" class="infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
+                  </div>
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="row">
+                <div class="col-12">
+                  <p>Be the first to add your word!</p>
                 </div>
               </div>
-            </div>
+            {% endif %}
           </div>
         </div>
-      </section>
-      <script>
-          var infinite = new Waypoint.Infinite({
-              element: $('.infinite-container')[0],
-              onBeforePageLoad: function () {
-                  $('.loading').show();
-              },
-              onAfterPageLoad: function ($items) {
-                  $('.loading').hide();
-              }
-          });
-      </script>
+      </div>
+    </section>
+    <script>
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0],
+            onBeforePageLoad: function () {
+                $('.loading').show();
+            },
+            onAfterPageLoad: function ($items) {
+                $('.loading').hide();
+            }
+        });
+    </script>
 {% endblock %}
