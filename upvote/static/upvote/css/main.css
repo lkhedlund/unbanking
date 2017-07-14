@@ -16,13 +16,11 @@ label {
 }
 
 .circle-left {
-  @extend .circle-icon;
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
 
 .circle-right {
-  @extend .circle-icon;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
