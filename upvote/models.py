@@ -7,6 +7,7 @@ from upvote.data.profanity import profanity_set
 class Submission(models.Model):
     word = models.CharField(max_length=50, unique=True)
     published_date = models.DateTimeField(default=timezone.now)
+    disabled = models.BooleanField(default=False)
 
     def __str__(self):
         return self.word
@@ -21,7 +22,7 @@ class Submission(models.Model):
 
 class Vote(models.Model):
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
-    submission_date = models.DateTimeField(default=timezone.now)
+    submission_date = models.DateTimeField(default=timezone.now, editable=False)
 
     def __str__(self):
-        return "Voted on {date}".format(date=submission_date)
+        return "Added on {date}".format(date=self.submission_date)

@@ -21,7 +21,8 @@ class IndexView(generic.View):
         submission_form = SubmissionForm()
         submissions = Submission.objects \
             .annotate(votes=Count('vote')) \
-            .order_by('-votes')
+            .order_by('-votes') \
+            .filter(disabled=False)
         page = request.GET.get('page', 1)
         paginator = Paginator(submissions, self.paginate_by)
         try:
