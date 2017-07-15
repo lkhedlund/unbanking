@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row pt-5 pb-5">
         <div class="col-12 col-md-8 offset-md-2">
-          <span class="d-block mx-auto">
+          <span class=" mx-auto">
             <h1 id="subtext">SINCE WE'LL HAVE TO CHANGE OUR TERMINOLOGY, LET'S MAKE SOME SUGGESTIONS.</h1>
           </span>
           <form method="post" action="{% url 'upvote:index' %}" class="form-group row my-4">
@@ -48,7 +48,7 @@
               {% if top_submissions.has_next %}
                 <div class="row">
                   <div class="col-12 p-0">
-                    <div class="d-block mx-auto">
+                    <div class=" mx-auto">
                       <a class="load-btn btn btn-lg" class="infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
                     </div>
                   </div>

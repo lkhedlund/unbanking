@@ -10,15 +10,15 @@
     <form id="vote" action="{% url 'upvote:vote' submission.word %}" method="post">
       {% csrf_token %}
       <button type="submit" class="vote-btn">
-        <img src="{% static 'upvote/images/unbanking_icon_heart.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
+        <img src="{% static 'upvote/images/unbanking_icon_heart.png' %}" class="logo img-fluid  mx-auto pb-2"/>
       </button>
     </form>
     <h3 class="entry-subtext">{{ submission.vote_set.count }}</h3>
   </div>
   <div class="col-6 col-sm-2 logo-base dropdown">
     <div id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img src="{% static 'upvote/images/unbanking_icon_share.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
-      <div class="d-block mx-auto">
+      <img src="{% static 'upvote/images/unbanking_icon_share.png' %}" class="logo img-fluid  mx-auto pb-2"/>
+      <div class=" mx-auto">
         <h3 class="entry-subtext">SHARE</h3>
       </div>
     </div>
