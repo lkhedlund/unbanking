@@ -46,9 +46,11 @@
                 </div>
               </div>
               {% if top_submissions.has_next %}
-                <div class="col-12 pt-5 pb-5">
-                  <div class="d-block mx-auto">
-                    <a class="btn btn-lg" class="infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
+                <div class="row">
+                  <div class="col-12 p-0">
+                    <div class="d-block mx-auto">
+                      <a class="load-btn btn btn-lg" class="infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
+                    </div>
                   </div>
                 </div>
               {% endif %}
