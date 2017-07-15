@@ -192,3 +192,7 @@ label {
 .dropdown-item {
   text-align: center;
 }
+
+.carousel-controls {
+  width: 100%;
+}
