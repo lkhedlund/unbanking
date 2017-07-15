@@ -33,14 +33,14 @@
               </div>
             </div>-->
             {% if top_submissions %}
-              <div class="row infinite-container">
-                <div class="col-12">
+              <div class="row">
+                <div class="col-12 infinite-container">
                   {% for submission in top_submissions %}
                     {% include 'upvote/partials/word_display.html' %}
                   {% endfor %}
                 </div>
               </div>
-              <div class="row bg-purple loading" style="display: none;">
+              <div class="row bg-purple loading text-center" style="display: none;">
                 <div class="col-12 pt-2 pl-4">
                   <h1>Loading...</h1>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="row">
                   <div class="col-12 p-0">
                     <div class=" mx-auto">
-                      <a class="load-btn btn btn-lg" class="infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
+                      <a class="load-btn btn btn-lg infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
                     </div>
                   </div>
                 </div>
@@ -65,15 +65,4 @@
         </div>
       </div>
     </section>
-    <script>
-        var infinite = new Waypoint.Infinite({
-            element: $('.infinite-container')[0],
-            onBeforePageLoad: function () {
-                $('.loading').show();
-            },
-            onAfterPageLoad: function ($items) {
-                $('.loading').hide();
-            }
-        });
-    </script>
 {% endblock %}

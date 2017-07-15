@@ -16,13 +16,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="{% static 'upvote/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'upvote/js/infinite.min.js' %}"></script>
   </head>
   <body>
-      {% include 'upvote/partials/messages.html' %}
-      {% include 'upvote/partials/navigation.html' %}
-      {% block content %}
-      {% endblock %}
-      {% include 'upvote/partials/footer.html' %}
-    </div>
+    {% include 'upvote/partials/messages.html' %}
+    {% include 'upvote/partials/navigation.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'upvote/partials/footer.html' %}
+    <script>
+      var infinite = new Waypoint.Infinite({
+          element: $('.infinite-container')[0],
+          onBeforePageLoad: function () {
+              $('.loading').show();
+          },
+          onAfterPageLoad: function ($items) {
+              $('.loading').hide();
+          }
+      });
+    </script>
   </body>
 </html>
