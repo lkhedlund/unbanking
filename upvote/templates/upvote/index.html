@@ -8,17 +8,15 @@
       <div class="row pt-5 pb-5">
         <div class="col-12 col-md-8 offset-md-2">
           <span class=" mx-auto">
-            <h1 id="subtext">SINCE WE'LL HAVE TO CHANGE OUR TERMINOLOGY, LET'S MAKE SOME SUGGESTIONS.</h1>
+            <h1 id="subtext" class="text-uppercase">If that decision doesn’t get reversed, credit unions will have to come up with a new term. Will you help us choose one?</h1>
           </span>
           <form method="post" action="{% url 'upvote:index' %}" class="form-group row my-4">
             {% csrf_token %}
               <div class="col-12 col-sm-8">
                 {{ submission_form }}
               </div>
-              <button type="submit" id="search-btn" class="btn col-12 col-sm-2">
-                SUBMIT A REPLACEMENT FOR THE WORD "BANKING"
-                <!-- <img class="col-md-1 pt-1" src="public/...">
-                      -->
+              <button type="submit" id="search-btn" class="btn col-12 col-sm-2 text-uppercase">
+                Suggest a replacement for the word "banking"
               </button>
             </form>
             <!--<div class="row">
