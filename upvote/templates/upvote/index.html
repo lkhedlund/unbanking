@@ -36,37 +36,7 @@
               <div class="row infinite-container">
                 <div class="col-12">
                   {% for submission in top_submissions %}
-                    <div class="row bg-purple infinite-item align-items-center justify-content-between p-4 mb-2">
-                      <div class="col-8">
-                        <a href="{% url 'upvote:detail' submission.word %}">
-                          <h1 id="user-submission">{{ submission.word }}</h1>
-                        </a>
-                      </div>
-                      <div class="col-2 logo-base">
-                        <form id="vote" action="{% url 'upvote:vote' submission.word %}" method="post">
-                          {% csrf_token %}
-                          <button type="submit" class="vote-btn">
-                            <img src="{% static 'upvote/images/unbanking_icon_heart.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
-                          </button>
-                        </form>
-                        <h3 class="entry-subtext">{{ submission.vote_set.count }}</h3>
-                      </div>
-                      <div class="col-2 logo-base dropdown">
-                        <div id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img src="{% static 'upvote/images/unbanking_icon_share.png' %}" class="logo img-fluid d-block mx-auto pb-2"/>
-                          <div class="d-block mx-auto">
-                            <h3 class="entry-subtext">SHARE</h3>
-                          </div>
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="dLabel">
-                          <a class="dropdown-item"
-                             href="https://twitter.com/share?url=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.word %}&related=wearecumark&text=Credit%20unions%20can%27t%20say%20banking%20anymore.%20Help%20them%20choose%20a%20new%20word,%20like%20{{ submission.word }}.%20Vote%20now!"
-                          >Twitter</a>
-                          <a class="dropdown-item" href="https://www.facebook.com/dialog/share?app_id=248598508986158&display=popup&http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.word %}&redirect_uri=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.word %}&quote=Credit%20unions%20can%27t%20say%20banking%20anymore.%20Help%20them%20choose%20a%20new%20word,%20like%20{{ submission.word }}.%20Vote%20now1">Facebook</a>
-                          <a class="dropdown-item" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.word %}&title=VOTE%20NOW!&summary=Credit%20unions%20can%27t%20say%20banking%20anymore.%20Help%20them%20choose%20a%20new%20word,%20like%20{{ submission.word }}.%20Vote%20now!&source=Unbanking">Linkedin</a>
-                        </div>
-                      </div>
-                    </div>
+                    {% include 'upvote/partials/word_display.html' %}
                   {% endfor %}
                 </div>
               </div>
