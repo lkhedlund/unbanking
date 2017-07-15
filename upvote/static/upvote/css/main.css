@@ -1,3 +1,11 @@
+a {
+  color: white;
+}
+
+a:hover {
+  color: #4caf76;
+}
+
 label {
   display: none;
 }
