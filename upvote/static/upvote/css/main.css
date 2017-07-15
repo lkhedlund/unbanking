@@ -82,11 +82,28 @@ label {
 }
 
 #search-btn {
-  padding: 2% 0;
   font-size: 12px;
-  background-color: #4caf76 !important;
+  background-color: #4caf76;
   color: white;
-  border-color: #4caf76 !important;
+  width: 100%;
+  height: 100%;
+  white-space: normal;
+  padding: 1rem;
+  border: none;
+  border-radius: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #search-btn {
+    margin: 0.5rem 0;
+  }
+}
+
+#submission-form input {
+  width: 100%;
+  background: lightgray;
+  border: none;
+  padding: 1.5rem;
 }
 
 .no-decoration {

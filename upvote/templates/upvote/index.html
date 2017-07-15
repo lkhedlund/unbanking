@@ -10,14 +10,15 @@
           <span class=" mx-auto">
             <h1 id="subtext" class="text-uppercase">If that decision doesn’t get reversed, credit unions will have to come up with a new term. Will you help us choose one?</h1>
           </span>
-          <form method="post" action="{% url 'upvote:index' %}" class="form-group row my-4">
+          <form id="submission-form" method="post" action="{% url 'upvote:index' %}" class="form-group row my-4">
             {% csrf_token %}
-              <div class="col-12 col-sm-8">
+              <div class="col-12 col-lg-8">
                 {{ submission_form }}
               </div>
-              <button type="submit" id="search-btn" class="btn col-12 col-sm-2 text-uppercase">
-                Suggest a replacement for the word "banking"
-              </button>
+              <div class="col-12 col-lg-4">
+                <button type="submit" id="search-btn" class="btn text-uppercase">Submit your replacement for "banking"
+                </button>
+              </div>
             </form>
             <!--<div class="row">
               <div class="col">
@@ -31,7 +32,7 @@
               </div>
             </div>-->
             {% if top_submissions %}
-              <div class="row">
+              <div class="row px-3">
                 <div class="col-12 infinite-container">
                   {% for submission in top_submissions %}
                     {% include 'upvote/partials/word_display.html' %}
@@ -45,7 +46,7 @@
               </div>
               {% if top_submissions.has_next %}
                 <div class="row">
-                  <div class="col-12 p-0">
+                  <div class="col-12">
                     <div class=" mx-auto">
                       <a class="load-btn btn btn-lg infinite-more-link" href="?page={{ top_submissions.next_page_number }}">Load More</a>
                     </div>
