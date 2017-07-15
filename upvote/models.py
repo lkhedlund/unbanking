@@ -3,12 +3,7 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 
-from upvote.data.profanity import profanity_set
-from .utils import format_word
-
-def validate_profanity(word):
-    if word in profanity_set:
-        raise ValidationError("Let's keep this classy, please.")
+from .utils import format_word, validate_profanity
 
 class Submission(models.Model):
     letters = RegexValidator(r'^[a-zA-Z]*$', 'Only letters are allowed.')
