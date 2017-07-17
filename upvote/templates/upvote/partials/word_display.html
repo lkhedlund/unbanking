@@ -25,10 +25,10 @@
     </div>
     <div class="dropdown-menu" aria-labelledby="dLabel">
         <a class="dropdown-item"
-            href="https://twitter.com/share?url=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.slug %}&related=wearecumark&text=Credit%20unions%20can%27t%20say%20banking%20anymore.%20Help%20them%20choose%20a%20new%20word,%20like%20{{ submission.word }}.%20Vote%20now!"
+            href="https://twitter.com/share?url=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.slug %}&hashtags=thisisridiculous,unbanking&related=wearecumark&text={{ submission.word|upper|urlencode }} would make a great new term for 'banking'. Vote to get it to the top!"
         >Twitter</a>
-        <a class="dropdown-item" href="https://www.facebook.com/dialog/share?app_id=248598508986158&display=popup&http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.slug %}&redirect_uri=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.slug %}&quote=Credit%20unions%20can%27t%20say%20banking%20anymore.%20Help%20them%20choose%20a%20new%20word,%20like%20{{ submission.word }}.%20Vote%20now1">Facebook</a>
-        <a class="dropdown-item" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.slug %}&title=VOTE%20NOW!&summary=Credit%20unions%20can%27t%20say%20banking%20anymore.%20Help%20them%20choose%20a%20new%20word,%20like%20{{ submission.word }}.%20Vote%20now!&source=Unbanking">Linkedin</a>
+        <a class="dropdown-item" href="https://www.facebook.com/dialog/share?app_id=248598508986158&display=popup&http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.slug %}&redirect_uri=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.slug %}&quote={{ submission.word|upper|urlencode }} would make a great new term for 'banking'. Vote to get it to the top!">Facebook</a>
+        <a class="dropdown-item" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Funbanking.ca{% url 'upvote:detail' submission.slug %}&title=VOTE%20NOW!&summary={{ submission.word|upper|urlencode }} would make a great new term for 'banking'. Vote to get it to the top!&source=Unbanking">Linkedin</a>
     </div>
   </div>
 </div>

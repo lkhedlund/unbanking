@@ -2,7 +2,7 @@ a {
   color: white;
 }
 
-a:hover {
+a:hover, a.green-link {
   color: #4caf76;
 }
 
@@ -217,12 +217,6 @@ body {
   text-align: center;
 }
 
-
-@media screen and (max-width: 575px) {
-  #carousel {
-    display: none;
-  }
-}
 .carousel-controls {
   width: 100%;
 }
