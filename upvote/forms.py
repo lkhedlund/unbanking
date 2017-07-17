@@ -22,7 +22,6 @@ class SubmissionForm(forms.ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data['name']
-        print('In clean')
         if contains_profanity(name, False):
             raise ValidationError("Let's keep it classy. Please provide another name.")
         else:

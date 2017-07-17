@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views import generic
+from django.views.generic import View, DetailView
 from django.db.models import Count
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -10,7 +10,7 @@ from .models import Submission, Vote
 from .forms import SubmissionForm
 from .utils import format_word
 
-class IndexView(generic.View):
+class IndexView(View):
     template_name = 'upvote/index.html'
     paginate_by = 10
 
@@ -51,15 +51,9 @@ class IndexView(generic.View):
             return HttpResponseRedirect(reverse('upvote:detail', args=(submission.slug,)))
         return redirect('upvote:index')
 
-class DetailView(generic.View):
+class DetailView(DetailView):
     model = Submission
     template_name = 'upvote/detail.html'
-
-    def get(self, request, slug):
-        submission = get_object_or_404(Submission, slug=slug)
-        return render(request, self.template_name, {
-            'submission': submission,
-        })
 
 def vote(request, slug):
     submission = get_object_or_404(Submission, slug=slug)
@@ -74,4 +68,5 @@ def vote(request, slug):
         vote.save()
         voted_list.append(word)
         request.session['voted'] = voted_list
+        messages.add_message(request, messages.WARNING, "Thank you for voting. Rememeber to share to help your word reach the top!")
     return redirect('upvote:index')
