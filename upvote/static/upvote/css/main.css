@@ -61,6 +61,7 @@ label {
   font-size: 3rem;
   color: #fff;
   text-transform: uppercase;
+  word-wrap: break-word;
 }
 
 @media screen and (max-width: 575px) {
