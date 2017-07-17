@@ -72,6 +72,10 @@ body {
 
 @media screen and (max-width: 575px) {
   #user-submission {
+    font-size: 2rem;
+  }
+
+  #user-submission, #user-name {
     text-align: center;
   }
 }
