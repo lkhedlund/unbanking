@@ -1,7 +1,8 @@
 from django import forms
-from .models import Submission, Vote
+from django.core.exceptions import ValidationError
 
-from .utils import validate_profanity
+from .models import Submission, Vote
+from .utils import contains_profanity
 
 class SubmissionForm(forms.ModelForm):
     class Meta:
@@ -13,8 +14,10 @@ class SubmissionForm(forms.ModelForm):
 
     def clean_word(self):
         word = self.cleaned_data['word']
-        validate_profanity(word)
-        return word
+        if contains_profanity(word):
+            raise ValidationError("Let's keep it classy. Please suggest another word.")
+        else:
+            return word
 
 class VoteForm(forms.ModelForm):
     class Meta:

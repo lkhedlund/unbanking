@@ -1,14 +1,13 @@
 from django.db import models
 from django.utils import timezone
-from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 
-from .utils import format_word, validate_profanity
+from .utils import format_word
 
 class Submission(models.Model):
     letters = RegexValidator(r'^[a-zA-Z]*$', 'Only letters are allowed.')
 
-    word = models.CharField(max_length=50, unique=True, validators=[letters, validate_profanity])
+    word = models.CharField(max_length=50, unique=True, validators=[letters])
     published_date = models.DateTimeField(default=timezone.now)
     disabled = models.BooleanField(default=False)
 

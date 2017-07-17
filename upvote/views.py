@@ -18,7 +18,7 @@ class IndexView(generic.View):
     thanks_message = "Thank you for your submission! Now get out there and vote!"
 
     def get(self, request):
-        submission_form = SubmissionForm()
+        form = SubmissionForm()
         submissions = Submission.objects \
             .annotate(votes=Count('vote')) \
             .order_by('-votes') \
@@ -33,7 +33,7 @@ class IndexView(generic.View):
             top_submissions = paginator.page(paginator.num_pages)
 
         return render(request, self.template_name, {
-            'submission_form': submission_form,
+            'form': form,
             'top_submissions': top_submissions,
             })
 
