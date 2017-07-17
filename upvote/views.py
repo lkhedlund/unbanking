@@ -49,28 +49,28 @@ class IndexView(generic.View):
             vote.save()
             messages.add_message(request, messages.INFO, self.duplicate_message)
             request.session['has_voted'] = True
-            return HttpResponseRedirect(reverse('upvote:detail', args=(submission.word,)))
+            return HttpResponseRedirect(reverse('upvote:detail', args=(submission.slug,)))
         if form.is_valid():
             submission = form.save(commit=False)
             submission.save()
             messages.add_message(request, messages.INFO, self.thanks_message)
-            return HttpResponseRedirect(reverse('upvote:detail', args=(submission.word,)))
+            return HttpResponseRedirect(reverse('upvote:detail', args=(submission.slug,)))
         return redirect('upvote:index')
 
 class DetailView(generic.View):
     model = Submission
     template_name = 'upvote/detail.html'
 
-    def get(self, request, word):
-        submission = get_object_or_404(Submission, word=word)
+    def get(self, request, slug):
+        submission = get_object_or_404(Submission, slug=slug)
         return render(request, self.template_name, {
             'submission': submission,
         })
 
-def vote(request, word):
+def vote(request, slug):
     if has_voted(request):
         return redirect('upvote:index')
-    submission = get_object_or_404(Submission, word=word)
+    submission = get_object_or_404(Submission, slug=slug)
     vote = Vote(submission=submission)
     vote.save()
     request.session['has_voted'] = True
