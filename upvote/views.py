@@ -14,7 +14,7 @@ class IndexView(generic.View):
     template_name = 'upvote/index.html'
     paginate_by = 10
 
-    duplicate_message = "Great minds think alike! Your word has already been submitted, so we've added a vote to help it get to the top!"
+    duplicate_message = "Great minds think alike! Your word has already been submitted, so please choose another word or help vote this one to the top."
     thanks_message = "Thank you for your submission! Vote for your word to help it get to the top!"
 
     def get(self, request):
@@ -42,13 +42,6 @@ class IndexView(generic.View):
         # Check whether the user has already submitted a word or voted
         submitted_word = format_word(form.data['word'])
         if Submission.objects.filter(word=submitted_word).exists():
-            submission = Submission.objects.filter(word=submitted_word).get()
-            if has_voted(request):
-                return redirect('upvote:index')
-            vote = Vote(submission=submission)
-            vote.save()
-            messages.add_message(request, messages.INFO, self.duplicate_message)
-            request.session['has_voted'] = True
             return HttpResponseRedirect(reverse('upvote:detail', args=(submission.slug,)))
         if form.is_valid():
             submission = form.save(commit=False)

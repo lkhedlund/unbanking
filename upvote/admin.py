@@ -11,7 +11,7 @@ class SubmissionAdmin(admin.ModelAdmin):
         return obj.vote_set.count()
 
     inlines = [VoteInline]
-    list_display = ['word', 'published_date', 'disabled', 'vote_count']
-    search_fields = ['word']
+    list_display = ['word', 'published_date', 'disabled', 'vote_count', 'name']
+    search_fields = ['word', 'name']
 
 admin.site.register(Submission, SubmissionAdmin)

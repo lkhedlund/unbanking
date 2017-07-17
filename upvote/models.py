@@ -6,9 +6,10 @@ from django.utils.text import slugify
 from .utils import format_word
 
 class Submission(models.Model):
-    letters = RegexValidator(r'^[a-zA-Z\s]*$', 'Only letters are allowed.')
+    letters = RegexValidator(r'^[a-zA-Z\s-]*$', 'Only letters, spaces, and dashes are allowed.')
 
-    word = models.CharField(max_length=50, unique=True, validators=[letters])
+    name = models.CharField(max_length=50, unique=True, validators=[letters])
+    word = models.CharField(max_length=25, validators=[letters])
     published_date = models.DateTimeField(default=timezone.now)
     disabled = models.BooleanField(default=False)
     slug = models.SlugField(editable=False)

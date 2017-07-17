@@ -5,6 +5,7 @@
     <a href="{% url 'upvote:detail' submission.slug %}">
       <h1 id="user-submission">{{ submission.word }}</h1>
     </a>
+    <h5 id="user-name">{{ submission.name }}</h5>
   </div>
   <div class="col-6 col-sm-2 logo-base">
     <form id="vote" action="{% url 'upvote:vote' submission.slug %}" method="post">

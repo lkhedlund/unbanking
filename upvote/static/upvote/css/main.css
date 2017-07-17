@@ -10,6 +10,10 @@ label {
   display: none;
 }
 
+body {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
 .bg-purple {
   background-color: #472e8a;
 }
@@ -34,7 +38,6 @@ label {
 }
 
 #carousel-text {
-  font-family: 'Roboto', sans-serif;
   color: #e6e6e6;
   text-align: center;
   font-size: 26px;
@@ -49,20 +52,23 @@ label {
 }
 
 #subtext {
-  font-family: 'Roboto', sans-serif;
   color: #4d4d4d;
-  font-size: 26px;
+  font-size: 1.5rem;
   text-align: center;
   font-weight: lighter;
 }
 
 #user-submission {
-  font-family: 'Roboto', sans-serif;
   font-size: 3rem;
   color: #fff;
   text-transform: uppercase;
   word-wrap: break-word;
 }
+
+ #user-name {
+   color: white;
+   text-transform: uppercase;
+ }
 
 @media screen and (max-width: 575px) {
   #user-submission {
@@ -71,7 +77,6 @@ label {
 }
 
 .entry-subtext {
-  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 100;
   color: #fff;
@@ -105,6 +110,10 @@ label {
   background: lightgray;
   border: none;
   padding: 1.5rem;
+}
+
+#submission-form input, #search-btn {
+  margin-top: 0.5rem;
 }
 
 .no-decoration {
