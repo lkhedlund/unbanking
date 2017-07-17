@@ -9,8 +9,8 @@ class SubmissionForm(forms.ModelForm):
         model = Submission
         fields = ['word', 'name']
         widgets = {
-            'word': forms.TextInput(attrs={'placeholder': 'Submit or find a word'}),
-            'name': forms.TextInput(attrs={'placeholder': 'Name'}),
+            'word': forms.TextInput(attrs={'placeholder': 'Enter your submission'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Enter your name'}),
         }
 
     def clean_word(self):
