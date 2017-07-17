@@ -2,7 +2,7 @@ from django.contrib import messages
 
 def has_voted(request):
     voted = request.session.get('has_voted', False)
-    voted_message = "Thank you for your vote. Be sure to share your word to get the most votes and win!"
+    voted_message = "Thank you voting. Share your word to help it get to the top!"
     if voted:
         messages.add_message(request, messages.WARNING, voted_message)
         return True

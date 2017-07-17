@@ -14,8 +14,8 @@ class IndexView(generic.View):
     template_name = 'upvote/index.html'
     paginate_by = 10
 
-    duplicate_message = "Great minds think alike! Your word has already been chosen, so we've aded a vote. Don't tell anyone else, but we hope you win."
-    thanks_message = "Thank you for your submission! Now get out there and vote!"
+    duplicate_message = "Great minds think alike! Your word has already been submitted, so we've added a vote to help it get to the top!"
+    thanks_message = "Thank you for your submission! Vote for your word to help it get to the top!"
 
     def get(self, request):
         form = SubmissionForm()
