@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', 'loomo-unbanking.herokuapp.com', 'unbanking.ca', 'blanking.ca']
+ALLOWED_HOSTS = ['localhost', 'loomo-unbanking.herokuapp.com', 'unbanking.ca', 'blanking.ca', 'www.unbanking.ca']
 
 
 # Application definition
