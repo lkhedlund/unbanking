@@ -15,12 +15,7 @@ class Submission(models.Model):
     def __str__(self):
         return self.word
 
-    def clean(self, *args, **kwargs):
-        validate_profanity(self.word)
-        super(Submission, self).clean(*args, **kwargs)
-
     def save(self, *args, **kwargs):
-        self.clean()
         self.word = format_word(self.word)
         super(Submission, self).save(*args, **kwargs)
 
