@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Submission, Vote
 from .forms import SubmissionForm
-from .utils import has_voted, format_word
+from .utils import format_word
 
 class IndexView(generic.View):
     template_name = 'upvote/index.html'
@@ -31,7 +31,6 @@ class IndexView(generic.View):
             top_submissions = paginator.page(1)
         except EmptyPage:
             top_submissions = paginator.page(paginator.num_pages)
-
         return render(request, self.template_name, {
             'form': form,
             'top_submissions': top_submissions,
@@ -41,7 +40,9 @@ class IndexView(generic.View):
         form = SubmissionForm(request.POST)
         # Check whether the user has already submitted a word or voted
         submitted_word = format_word(form.data['word'])
+
         if Submission.objects.filter(word=submitted_word).exists():
+            submission = Submission.objects.filter(word=submitted_word).get()
             return HttpResponseRedirect(reverse('upvote:detail', args=(submission.slug,)))
         if form.is_valid():
             submission = form.save(commit=False)
@@ -61,10 +62,16 @@ class DetailView(generic.View):
         })
 
 def vote(request, slug):
-    if has_voted(request):
-        return redirect('upvote:index')
     submission = get_object_or_404(Submission, slug=slug)
-    vote = Vote(submission=submission)
-    vote.save()
-    request.session['has_voted'] = True
+    word = submission.word
+    voted_list = request.session.get('voted', [])
+    print(voted_list, word)
+    if word in voted_list:
+        messages.add_message(request, messages.WARNING, "You've already voted for that word.")
+        return redirect('upvote:index')
+    else:
+        vote = Vote(submission=submission)
+        vote.save()
+        voted_list.append(word)
+        request.session['voted'] = voted_list
     return redirect('upvote:index')

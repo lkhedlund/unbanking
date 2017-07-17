@@ -1,14 +1,3 @@
-from django.contrib import messages
-
-def has_voted(request):
-    voted = request.session.get('has_voted', False)
-    voted_message = "Thank you voting. Share your word to help it get to the top!"
-    if voted:
-        messages.add_message(request, messages.WARNING, voted_message)
-        return True
-    else:
-        return False
-
 def format_word(word):
     lower_word = word.lower()
     # if lower_word[-3:] == 'ing':
