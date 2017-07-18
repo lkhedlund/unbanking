@@ -10,46 +10,48 @@ from .models import Submission, Vote
 from .forms import SubmissionForm
 from .utils import format_word
 
-class IndexView(View):
+
+def index(request):
     template_name = 'upvote/index.html'
     paginate_by = 10
 
     duplicate_message = "Great minds think alike! Your word has already been submitted, so please choose another word or help vote this one to the top."
     thanks_message = "Thank you for your submission! Vote for your word to help it get to the top!"
 
-    def get(self, request):
-        form = SubmissionForm()
-        submissions = Submission.objects \
-            .annotate(votes=Count('vote')) \
-            .order_by('-votes') \
-            .filter(disabled=False)
-        page = request.GET.get('page', 1)
-        paginator = Paginator(submissions, self.paginate_by)
-        try:
-            top_submissions = paginator.page(page)
-        except PageNotAnInteger:
-            top_submissions = paginator.page(1)
-        except EmptyPage:
-            top_submissions = paginator.page(paginator.num_pages)
-        return render(request, self.template_name, {
-            'form': form,
-            'top_submissions': top_submissions,
-            })
+    submissions = Submission.objects \
+        .annotate(votes=Count('vote')) \
+        .order_by('-votes') \
+        .filter(disabled=False)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(submissions, paginate_by)
+    try:
+        top_submissions = paginator.page(page)
+    except PageNotAnInteger:
+        top_submissions = paginator.page(1)
+    except EmptyPage:
+        top_submissions = paginator.page(paginator.num_pages)
 
-    def post(self, request):
+    if request.method == 'POST':
         form = SubmissionForm(request.POST)
         # Check whether the user has already submitted a word or voted
         submitted_word = format_word(form.data['word'])
 
         if Submission.objects.filter(word=submitted_word).exists():
             submission = Submission.objects.filter(word=submitted_word).get()
+            messages.add_message(request, messages.INFO, duplicate_message)
             return HttpResponseRedirect(reverse('upvote:detail', args=(submission.slug,)))
         if form.is_valid():
             submission = form.save(commit=False)
             submission.save()
-            messages.add_message(request, messages.INFO, self.thanks_message)
+            messages.add_message(request, messages.SUCCESS, thanks_message)
             return HttpResponseRedirect(reverse('upvote:detail', args=(submission.slug,)))
-        return redirect('upvote:index')
+    else:
+        form = SubmissionForm()
+
+    return render(request, template_name, {
+        'form': form,
+        'top_submissions': top_submissions,
+        })
 
 class DetailView(DetailView):
     model = Submission
@@ -62,11 +64,10 @@ def vote(request, slug):
     print(voted_list, word)
     if word in voted_list:
         messages.add_message(request, messages.WARNING, "You've already voted for that word.")
-        return redirect('upvote:index')
     else:
         vote = Vote(submission=submission)
         vote.save()
         voted_list.append(word)
         request.session['voted'] = voted_list
-        messages.add_message(request, messages.WARNING, "Thank you for voting. Rememeber to share to help your word reach the top!")
+        messages.add_message(request, messages.SUCCESS, "Thank you for voting. Rememeber to share to help your word reach the top!")
     return redirect('upvote:index')
