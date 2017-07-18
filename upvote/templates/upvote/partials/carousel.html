@@ -1,43 +1,38 @@
 {% load static %}
 
-<header class="container-fluid bg-purple">
-  <div id="carousel" class="row">
-    <div class="col">
-      <a class="carousel-controls carousel-control-prev" href="#unbankingCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </div>
-    <div id="unbankingCarousel" class="carousel slide col-6  mx-auto" data-ride="carousel">
-      <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-          <div class="container-fluid">
-            <img class=" img-fluid mx-auto carousel-sizing" src="{% static 'upvote/images/slide_1.jpg' %}" alt="First slide">
+<header class="bg-purple">
+  <div class="container">
+    <div id="carousel" class="row">
+      <div class="col-1 hidden-sm-down">
+        <a class="carousel-controls carousel-control-prev" href="#unbankingCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </div>
+      <div id="unbankingCarousel" class="carousel slide col-12 col-sm-8 mx-auto" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+          <div class="carousel-item active">
+            <div class="container-fluid">
+              <img class=" img-fluid mx-auto carousel-sizing" src="{% static 'upvote/images/slide_1.jpg' %}" alt="First slide">
+            </div>
           </div>
-        </div>
-        <div class="carousel-item">
-          <div class="container-fluid">
-            <img class=" img-fluid mx-auto carousel-sizing" src="{% static 'upvote/images/slide_2.jpg' %}" alt="Second slide">
+          <div class="carousel-item">
+            <div class="container-fluid">
+              <img class=" img-fluid mx-auto carousel-sizing" src="{% static 'upvote/images/slide_2.jpg' %}" alt="Second slide">
+            </div>
           </div>
-        </div>
-        <div class="carousel-item">
-          <div class="container-fluid">
-            <img class=" img-fluid mx-auto carousel-sizing" src="{% static 'upvote/images/slide_3.jpg' %}" alt="Third slide">
+          <div class="carousel-item">
+            <div class="container-fluid">
+              <img class=" img-fluid mx-auto carousel-sizing" src="{% static 'upvote/images/slide_3.jpg' %}" alt="Third slide">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <a class="carousel-controls carousel-control-next" href="#unbankingCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </div>
-  <div class="row py-5">
-    <div class="col-12 col-sm-8 offset-sm-2">
-      <div class=" mx-auto">
-        <h1 id="carousel-text">Starting in 2018, credit unions in Canada won’t be allowed to use the term “banking” to describe the services they offer.</h1>
+      <div class="col-1 hidden-sm-down">
+        <a class="carousel-controls carousel-control-next" href="#unbankingCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
     </div>
   </div>
