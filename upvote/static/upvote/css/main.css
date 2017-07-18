@@ -63,6 +63,10 @@ body {
   #user-submission, #user-name {
     text-align: center;
   }
+
+  header .container-fluid, header .container {
+    padding: 0;
+  }
 }
 
 .entry-subtext {
@@ -70,10 +74,6 @@ body {
   font-weight: 100;
   color: #fff;
   text-align: center;
-}
-
-#form-styling {
-  color: purple;
 }
 
 #search-btn {

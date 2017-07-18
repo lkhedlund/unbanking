@@ -63,7 +63,8 @@ def vote(request, slug):
     voted_list = request.session.get('voted', [])
     print(voted_list, word)
     if word in voted_list:
-        messages.add_message(request, messages.WARNING, "You've already voted for that word.")
+        voted_message = "You've already voted for {word}, but you can always share to get more votes!".format(word=word.upper())
+        messages.add_message(request, messages.WARNING, voted_message)
     else:
         vote = Vote(submission=submission)
         vote.save()
