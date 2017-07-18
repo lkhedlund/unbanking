@@ -18,30 +18,12 @@ body {
   background-color: #472e8a;
 }
 
-.circle-icon {
-  width: 50px;
-  height: 50px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  border-radius: 25px;
-  background: #4caf76;
-}
-
-.circle-left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-
-.circle-right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-
 #carousel-text {
   color: #e6e6e6;
   text-align: center;
   font-size: 26px;
 }
+
 
 .float-right {
   float: right !important;
@@ -162,11 +144,6 @@ body {
   white-space:nowrap;
 }
 
-.resizing-img {
-  max-width: 100px;
-}
-
-
 .logo {
   width: 100%;
   max-width: 50px;
@@ -221,9 +198,9 @@ body {
   text-align: center;
 }
 
-.carousel-controls {
+/* .carousel-controls {
   width: 100%;
-}
+} */
 
 a.load-btn {
   width: 100%;

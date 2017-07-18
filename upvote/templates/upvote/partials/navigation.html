@@ -1,11 +1,26 @@
 {% load static %}
 
-<nav class="container-fluid bg-purple">
-  <div class="row">
-    <div class="col-12 text-center">
-      <a href="{% url 'upvote:index' %}">
-        <img src="{% static 'upvote/images/logo.png' %}" class="mx-auto  img-fluid" />
-      </a>
+<nav class="bg-purple py-2">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-12 text-center p-3">
+        <a href="{% url 'upvote:index' %}">
+          <img src="{% static 'upvote/images/logo.png' %}" class="mx-auto  img-fluid" />
+        </a>
+      </div>
+      <div class="col-12 col-sm-4 p-3 text-center">
+        <a href="https://cumark.ca" target="_blank">
+          <img src="{% static 'upvote/images/cumark.png' %}" class="mx-auto  img-fluid" />
+        </a>
+      </div>
+      <div class="col-12 col-sm-1 text-white text-center">
+        +
+      </div>
+      <div class="col-12 col-sm-4 p-3 text-center">
+        <a href="https://www.luminusfinancial.com/" target="_blank">
+          <img src="{% static 'upvote/images/luminus.png' %}" class="mx-auto  img-fluid" />
+        </a>
+      </div>
     </div>
   </div>
 </nav>
