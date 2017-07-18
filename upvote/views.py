@@ -69,5 +69,5 @@ def vote(request, slug):
         vote.save()
         voted_list.append(word)
         request.session['voted'] = voted_list
-        messages.add_message(request, messages.SUCCESS, "Thank you for voting. Rememeber to share to help your word reach the top!")
+        messages.add_message(request, messages.SUCCESS, "Thank you for voting. Remember to share to help your word reach the top!")
     return redirect('upvote:index')

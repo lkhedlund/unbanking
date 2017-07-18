@@ -6,7 +6,7 @@ from django.utils.text import slugify
 from .utils import format_word
 
 class Submission(models.Model):
-    letters = RegexValidator(r'^[a-zA-Z\s-]*$', 'Only letters, spaces, and dashes are allowed.')
+    letters = RegexValidator(r'^[a-zA-Z\s]*$', 'Only letters and spaces are allowed.')
 
     name = models.CharField(max_length=50, validators=[letters])
     word = models.CharField(max_length=25, unique=True, validators=[letters])
