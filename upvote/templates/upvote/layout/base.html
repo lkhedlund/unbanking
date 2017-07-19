@@ -24,6 +24,16 @@
     <script src="https://use.fontawesome.com/137a5a9211.js"></script>
     <script src="{% static 'upvote/js/jquery.waypoints.min.js' %}"></script>
     <script src="{% static 'upvote/js/infinite.min.js' %}"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-102811259-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
   </head>
   <body>
     {% include 'upvote/partials/messages.html' %}
