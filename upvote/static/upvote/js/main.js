@@ -46,6 +46,9 @@ function vote(slug) {
                 var count = +count_container.html() + 1;
                 count_container.html(count);
             }
+            setTimeout( function() {
+                $('.alert-sticky').removeClass('show');
+            }, 2000);
         }
     });
 }
