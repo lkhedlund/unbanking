@@ -74,9 +74,21 @@ def vote(request, slug):
 
 def ajax_vote(request):
     data = {}
-    print(request.POST)
     if request.method == 'POST':
         slug = request.POST.get('slug')
-        data['slug'] = slug
-    data['error'] = "Error!"
+        submission = get_object_or_404(Submission, slug=slug)
+        word = submission.word
+        voted_list = request.session.get('voted', [])
+        if word in voted_list:
+            voted_message = "You've already voted for {word}, but you can always share to get more votes!".format(word=word.upper())
+            data['message'] = voted_message
+        else:
+            vote = Vote(submission=submission)
+            vote.save()
+            voted_list.append(word)
+            request.session['voted'] = voted_list
+            voted_message = "Thank you for voting. Remember to share to help your word reach the top!"
+            data['message'] = voted_message
+    if not data['message']:
+        data['message'] = "Something went wrong!"
     return JsonResponse(data)

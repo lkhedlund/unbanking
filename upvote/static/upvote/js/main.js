@@ -13,7 +13,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-var csrftoken = getCookie('csrftoken');
 
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
@@ -22,6 +21,7 @@ function csrfSafeMethod(method) {
 
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
+        var csrftoken = getCookie('csrftoken');
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
