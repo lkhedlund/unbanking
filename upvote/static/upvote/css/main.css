@@ -291,3 +291,12 @@ ul.errorlist {
 .vote-btn .fa:hover, .share-btn .fa:hover {
   color: #e0146c;
 }
+
+.alert-sticky {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}

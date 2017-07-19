@@ -30,15 +30,22 @@ $.ajaxSetup({
 
 function vote(slug) {
     console.log(slug);
-
     $.ajax({
-        url: "ajax/vote/",
+        url: "/ajax/vote/",
         type : "POST",
         data: {
             'slug': slug,
         },
         success: function (json) {
-            console.log(json);
+            var sticky_alert = $('.alert-sticky');
+            sticky_alert.find('#alert-message').html(json.message);
+            $('.alert-sticky').addClass('show');
+            if (json.success) {
+                var slug = '#' + json.slug;
+                var count_container = $(slug).find('#vote-count');
+                var count = +count_container.html() + 1;
+                count_container.html(count);
+            }
         }
     });
 }
