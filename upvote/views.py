@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, DetailView
 from django.db.models import Count
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -61,7 +61,6 @@ def vote(request, slug):
     submission = get_object_or_404(Submission, slug=slug)
     word = submission.word
     voted_list = request.session.get('voted', [])
-    print(voted_list, word)
     if word in voted_list:
         voted_message = "You've already voted for {word}, but you can always share to get more votes!".format(word=word.upper())
         messages.add_message(request, messages.WARNING, voted_message)
@@ -72,3 +71,12 @@ def vote(request, slug):
         request.session['voted'] = voted_list
         messages.add_message(request, messages.SUCCESS, "Thank you for voting. Remember to share to help your word reach the top!")
     return redirect('upvote:index')
+
+def ajax_vote(request):
+    data = {}
+    print(request.POST)
+    if request.method == 'POST':
+        slug = request.POST.get('slug')
+        data['slug'] = slug
+    data['error'] = "Error!"
+    return JsonResponse(data)
