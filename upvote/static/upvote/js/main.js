@@ -48,7 +48,7 @@ function vote(slug) {
             }
             setTimeout( function() {
                 $('.alert-sticky').removeClass('show');
-            }, 2000);
+            }, 3000);
         }
     });
 }
