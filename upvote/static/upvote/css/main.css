@@ -68,9 +68,6 @@ body {
  }
 
 @media screen and (max-width: 575px) {
-  #user-submission {
-    font-size: 2rem;
-  }
 
   #user-submission, #user-name {
     text-align: center;
@@ -78,6 +75,12 @@ body {
 
   header .container-fluid, header .container {
     padding: 0;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  #user-submission {
+    font-size: 2rem;
   }
 }
 
@@ -105,12 +108,6 @@ body {
   background-color: #bc105b;
 }
 
-@media screen and (max-width: 768px) {
-  #search-btn {
-    margin: 0.5rem 0;
-  }
-}
-
 #submission-form input {
   width: 100%;
   background: lightgray;
@@ -118,7 +115,7 @@ body {
   padding: 1.5rem;
 }
 
-#submission-form input, #search-btn {
+#submission-form input {
   margin-top: 0.5rem;
 }
 
@@ -304,4 +301,22 @@ ul.errorlist {
 
 .text-cta {
   color: #e0146c;
+}
+
+.bg-muted {
+  background: #f7f7f9;
+}
+
+.sponsor-logo img {
+  width: 200px;
+}
+
+.logo-right {
+  text-align: right;
+}
+
+@media screen and (max-width: 575px) {
+  .sponsor-logo {
+    text-align: center;
+  }
 }
